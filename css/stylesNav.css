@@ -1,0 +1,75 @@
+/*ESTILADO NAV*/
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Sora:wght@100..800&display=swap");
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Sora", sans-serif;
+}
+body {
+  background-color: #b2d36b;
+  width: 100%;
+}
+.navBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+}
+.navUl {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  font-size: 1.3rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.navUl li {
+  
+  text-decoration: none;
+}
+.logoH1 {
+  display: flex;
+  align-items: flex-end;
+}
+.iso_sr {
+  width: 2.5rem;
+  margin-right: 1rem;
+}
+.menuHamburguesa {
+  display: none;
+  height: 2rem;
+  cursor: pointer;
+}
+.linkNav {
+  color: rgb(40, 40, 40);
+  border-bottom: 0.1rem solid transparent;
+  transition: border-color 0.4s ease;
+}
+.linkNav:hover {
+  cursor: pointer;
+  border-color: rgb(40, 40, 40);
+}
+@media screen and (max-width: 768px) {
+  .navUl {
+    background-color: black;
+    display: none;
+    justify-content: center;
+    position: absolute;
+    top: 45px;
+    right: 0;
+    width: 100%;
+    padding: 5px 0;
+    z-index: 9999;
+  }
+  .navUl.open {
+    display: flex;
+  }
+  .navUl li{
+    color: #b2d36b;
+  }
+  .menuHamburguesa {
+    display: flex;
+  }
+}

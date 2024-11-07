@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sr. Cambio | Historico</title>
+    <link rel="stylesheet" href="../css/stylesIndex.css" />
+    <link rel="shortcut icon" href="../img/favi.png" type="image/x-icon" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!--para usar chart-->
+    
+  </head>
+  <body>
+      <section>
+        <h2>Cotizaciones históricas del dólar</h2>
+      </section>
+      <!-- formulario para elegir gráfico a mostrar-->
+      <div class="divCanvas">
+        <form class="formularioHistorico" action="#">
+          <label for="casaElegida">¿Qué cotizacion querés buscar?</label>
+          <div>
+            <select name="casaElegida" id="casaElegida" required>
+              <option value="" disabled selected>Selecioná una opción</option>
+              <option value="oficial">Oficial</option>
+              <option value="blue">Blue</option>
+              <option value="bolsa">Bolsa</option>
+              <option value="contadoconliqui">CCL</option>
+              <option value="cripto">Cripto</option>
+              <option value="mayorista">Mayorista</option>
+              <option value="solidario">Solidario</option>
+              <option value="turista">Turista</option>
+            </select>
+          </div>
+          <div>
+            <label for="#">Ingresá el rango de fechas a consultar</label>
+            <div class="divInputForm">
+              <input
+                type="date"
+                name="fechaElegida1"
+                id="fechaElegida1"
+                min="2011-01-03"
+                max=""
+                required
+              />
+              <input
+                type="date"
+                name="fechaElegida2"
+                id="fechaElegida2"
+                min="2011-01-03"
+                max=""
+                required
+              />
+            </div>
+          </div>
+          <span class="divBotonesForm">
+            <input
+              type="button"
+              name="enviar"
+              value="Enviar"
+              onclick="adquirirDatos(), esperarDatos(), mostrarGrafico()"
+            />
+            <input
+              type="button"
+              name="borrar"
+              value="Restablecer"
+              onclick="restablecer()"
+            />
+          </span>
+        </form>
+        <!-- div del teapot -->
+        <div class="ocultar" id="teapot">
+          <img src="../img/teapot.png" alt="ERROR! Sr cambio tomando el té" />
+        </div>
+        <!-- div del gráfico -->
+        <div class="ocultar" id="grafico">
+          <h3 class="tituloCanva"></h3>
+          <canvas id="canvaHistorico"></canvas>
+        </div>
+      </div>
+    </div>
+    
+    <script src="../js/historico.js"></script>
+  </body>
+</html>

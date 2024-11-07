@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sr. Cambio | Index</title>
+    <link rel="stylesheet" href="css/stylesIndex.css" />
+    <link rel="stylesheet" href="css/stylesNav.css">
+    <link rel="shortcut icon" href="img/favi.png" type="image/x-icon" />
+  </head>
+  <body>
+    <!--NavBar-->
+    <nav>
+      <div class="navBar">
+        <div class="logoH1">
+          <img src="img/sr.png" alt="Caricatura Señor Cambio" class="iso_sr" />
+          <h1>Sr Cambio</h1>
+        </div>
+        <img
+          src="img/burguer.png"
+          alt="icono menu Hamburguesa"
+          class="menuHamburguesa"
+        />
+        <ul class="navUl">
+          <li id="home" class="linkNav">
+            <p class="opcionMenu" id="navHome" onclick="mostrarIframe('cotizaciones')"> Home </p>
+          </li>
+          <li id="dolar" class="linkNav">
+            <p class="opcionMenu" id="navDolar" onclick="mostrarIframe('dolares')"> Dólar </p>
+          </li>
+          <li class="linkNav">
+            <p class="opcionMenu" id="navHistorico" onclick="mostrarIframe('historico')"> Histórico </p>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!--Iframes pages-->
+    <section class="contenedorCards">
+      <iframe src="pages/cotizaciones.html" frameborder="0" class="ifCards" id="cotizaciones">
+        <!--iframe para cotizaciones generales-->
+      </iframe>
+      <iframe src="pages/dolares.html" frameborder="0" class="ifCards ocultar" id="dolares">
+        <!--iframe para cotizaciones dólar-->
+      </iframe>
+      <iframe src="pages/historico.html" frameborder="0" class="ifCards ocultar"
+      id="historico">
+        <!--iframe para gráfico históricos-->
+      </iframe>
+    </section>
+    <!--botones-->
+    <div class="divBtn">
+      <p class="botonIndex" id="botonDolar" onclick="botonesIndex()">
+        Ver más tipos de Dólar
+      </p>
+      <p class="botonIndex ocultar" id="botonCotizaciones" onclick="botonesIndex()">
+        Volver a todas las cotizaciones
+      </p>
+    </div>
+    <!--envío mail-->
+    <div class="divSobre">
+      <img src="./img/sobre.png" alt="icono enviar informacion" class="sobre" />
+    </div>
+    <!--footer-->
+    <section class="anteFooter">
+      <img src="img/monedas.png" alt="imagen monedas" class="imgMon" />
+    </section>
+    <footer>
+      <iframe src="pages/footer.html" frameborder="0"></iframe>
+    </footer>
+
+    <script src="js/index.js"></script>
+  </body>
+</html>

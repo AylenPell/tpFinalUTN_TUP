@@ -1,0 +1,29 @@
+/*ESTILADO FOOTER*/
+*{
+    margin: 0;
+    font-family: "Sora", sans-serif;
+}
+#footer{
+    background-color: #e8ffb7;
+    padding: 1REM;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;    
+}
+li{
+    list-style: none; 
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 0.15rem;
+}
+.divImagen{
+    display: flex;    
+}
+ul{
+    padding-left: 0;
+}
+img{
+    height: 3rem;
+    padding-right: 1.5rem;
+    padding-top: 0.2rem;
+}
