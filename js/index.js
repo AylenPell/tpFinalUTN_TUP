@@ -38,3 +38,10 @@ function botonesIndex() {
         console.log("funciona dolares"); // prueba técnica para ver si funciona
     }
 }
+
+// para cuando sepamos usar Node.js
+// export function nombrar_ruta(){
+//     botoncito = document.getElementById('navHome')
+//     ruta = botoncito.getAttribute('name');
+//     return ruta
+// }

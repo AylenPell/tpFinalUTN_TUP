@@ -8,20 +8,20 @@ let compraHist = [];
 let ventaHist = [];
 let fechaElegida1; 
 let fechaElegida2;
+let casaElegida;
 
-// funciones
+// FUNCIONES
 function mostrarGrafico() { 
-    let fechaElegida1 = document.querySelector('#fechaElegida1').value;
-    let fechaElegida2 = document.querySelector('#fechaElegida2').value;
-    let casaElegida = document.querySelector('#casaElegida').value;
-    console.log(fechaElegida1, fechaElegida2)
+    fechaElegida1 = document.querySelector('#fechaElegida1').value;
+    fechaElegida2 = document.querySelector('#fechaElegida2').value;
+    casaElegida = document.querySelector('#casaElegida').value;
+    console.log(fechaElegida1, fechaElegida2) // prueba técnica
     if (!casaElegida || !fechaElegida1 || !fechaElegida2){
         teapot()
     } else {
         const grafico = document.getElementById('grafico');
         grafico.classList.toggle('ocultar');
     }
-    return (fechaElegida1, fechaElegida2, casaElegida)
 }
 
 function restablecer(){
@@ -29,30 +29,25 @@ function restablecer(){
     const grafico = document.getElementById('grafico');
     const teapot = document.getElementById('teapot');
     const canvas = document.getElementById('canvaHistorico');
-
     if (formulario) {
         formulario.reset();
     }
-
     if (grafico && !grafico.classList.contains('ocultar')) {
         grafico.classList.add('ocultar');
     }
-
     if (teapot && !teapot.classList.contains('ocultar')) {
         teapot.classList.add('ocultar');
     }
-
-    // Limpia el contenido del Canvas y destruye el gráfico si existe
+    // Limpia el contenido del Canvas y borra el gráfico si existe
     if (canvas) {
         const borrarCanvas = canvas.getContext('2d');
         borrarCanvas.clearRect(0, 0, canvas.width, canvas.height); //Limpia el canvas
-
         if (myChart) { 
             myChart.destroy(); 
             myChart = null; 
         }
     }
-
+    // reseteo variables
     monedaHist = [];
     casaHist = [];
     fechaHist = [];
@@ -62,19 +57,16 @@ function restablecer(){
     fechaElegida2=''
 }
 
-
 function teapot(){
     const teapot = document.getElementById('teapot');
     teapot.classList.toggle('ocultar');
 }
 
-function adquirirDatos(url, fechaElegida1, fechaElegida2){
-    fechaElegida1 = new Date(document.querySelector('#fechaElegida1').value);
-    fechaElegida2 = new Date(document.querySelector('#fechaElegida2').value);
+function adquirirDatos(url){
     return new Promise((resolve) => {
         let casaElegida = document.querySelector('#casaElegida').value;
-        console.log(casaElegida, fechaElegida1, fechaElegida2);
-        url = `https://api.argentinadatos.com/v1/cotizaciones/dolares/${casaElegida}`; // /${fechaElegida}
+        console.log(casaElegida); // prueba técnica para chequear casa elegida
+        url = `https://api.argentinadatos.com/v1/cotizaciones/dolares/${casaElegida}`;
         
         resolve(url);
         console.log(url); // prueba técnica para ver si trae bien la url

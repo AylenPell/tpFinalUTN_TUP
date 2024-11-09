@@ -1,11 +1,10 @@
-
- // llamada a API
-fetch("https://dolarapi.com/v1/cotizaciones")
+// Llamada api de Python
+fetch('http://127.0.0.1:5000/cotizaciones')
 .then(response => response.json())
 .then(data => {for (i=0; i<data.length; i++){
     agregarCotizacion(data[i].nombre, data[i].compra.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 }), data[i].venta.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 }), data[i].fechaActualizacion)
     document.getElementsByClassName("card")[i+1].style.display="grid"
-    console.log(data)
+    //console.log(data)
     }}); 
 
 //cards
