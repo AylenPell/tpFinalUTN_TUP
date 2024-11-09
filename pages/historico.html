@@ -33,43 +33,21 @@
           <div>
             <label for="#">Ingresá el rango de fechas a consultar</label>
             <div class="divInputForm">
-              <input
-                type="date"
-                name="fechaElegida1"
-                id="fechaElegida1"
-                min="2011-01-03"
-                max=""
-                required
-              />
-              <input
-                type="date"
-                name="fechaElegida2"
-                id="fechaElegida2"
-                min="2011-01-03"
-                max=""
-                required
-              />
+              <input type="date" name="fechaElegida1" id="fechaElegida1" min="2011-01-03" max="" required/>
+              <input type="date" name="fechaElegida2" id="fechaElegida2" min="2011-01-03" max="" required/>
             </div>
           </div>
           <span class="divBotonesForm">
-            <input
-              type="button"
-              name="enviar"
-              value="Enviar"
-              onclick="adquirirDatos(), esperarDatos(), mostrarGrafico()"
-            />
-            <input
-              type="button"
-              name="borrar"
-              value="Restablecer"
-              onclick="restablecer()"
-            />
+            <input type="button" name="enviar" value="Enviar" onclick="adquirirDatos(), esperarDatos(), mostrarGrafico()"/>
+            <input type="button" name="borrar" value="Restablecer" onclick="restablecer()"/>
           </span>
         </form>
+
         <!-- div del teapot -->
         <div class="ocultar" id="teapot">
           <img src="../img/teapot.png" alt="ERROR! Sr cambio tomando el té" />
         </div>
+        
         <!-- div del gráfico -->
         <div class="ocultar" id="grafico">
           <h3 class="tituloCanva"></h3>

@@ -1,5 +1,6 @@
 // variables y arrays
 let url;
+let myChart;
 let monedaHist = [];
 let casaHist =[];
 let fechaHist = [];
@@ -13,39 +14,56 @@ function mostrarGrafico() {
     let fechaElegida1 = document.querySelector('#fechaElegida1').value;
     let fechaElegida2 = document.querySelector('#fechaElegida2').value;
     let casaElegida = document.querySelector('#casaElegida').value;
+    console.log(fechaElegida1, fechaElegida2)
     if (!casaElegida || !fechaElegida1 || !fechaElegida2){
         teapot()
     } else {
         const grafico = document.getElementById('grafico');
         grafico.classList.toggle('ocultar');
     }
-    
+    return (fechaElegida1, fechaElegida2, casaElegida)
 }
 
 function restablecer(){
-    let formulario = document.getElementsByClassName('formularioHistorico')[0];
+    const formulario = document.getElementsByClassName('formularioHistorico')[0];
     const grafico = document.getElementById('grafico');
     const teapot = document.getElementById('teapot');
-    if(formulario){
+    const canvas = document.getElementById('canvaHistorico');
+
+    if (formulario) {
         formulario.reset();
-        if(grafico.classList != 'ocultar'){
-            grafico.classList.toggle('ocultar');
-        }
-        if(teapot.classList != 'ocultar'){
-            teapot.classList.toggle('ocultar');
+    }
+
+    if (grafico && !grafico.classList.contains('ocultar')) {
+        grafico.classList.add('ocultar');
+    }
+
+    if (teapot && !teapot.classList.contains('ocultar')) {
+        teapot.classList.add('ocultar');
+    }
+
+    // Limpia el contenido del Canvas y destruye el gráfico si existe
+    if (canvas) {
+        const borrarCanvas = canvas.getContext('2d');
+        borrarCanvas.clearRect(0, 0, canvas.width, canvas.height); //Limpia el canvas
+
+        if (myChart) { 
+            myChart.destroy(); 
+            myChart = null; 
         }
     }
+
+    monedaHist = [];
+    casaHist = [];
+    fechaHist = [];
+    compraHist = [];
+    ventaHist = [];
+    fechaElegida1='',
+    fechaElegida2=''
 }
 
-function teapot(){
-    // let fechaElegida1 = document.querySelector('#fechaElegida1').value;
-    // let fechaElegida2 = document.querySelector('#fechaElegida2').value;
-    // let casaElegida = document.querySelector('#casaElegida').value;
 
-    // if (!casaElegida || !fechaElegida1 || !fechaElegida2){
-    //     const teapot = document.getElementById('teapot');
-    //     teapot.classList.toggle('ocultar');
-    // }
+function teapot(){
     const teapot = document.getElementById('teapot');
     teapot.classList.toggle('ocultar');
 }
@@ -66,9 +84,9 @@ function adquirirDatos(url, fechaElegida1, fechaElegida2){
 // delimitar el calendario para que no se vaya a la m.... al futuro
 const hoy = new Date();
 const opciones = { year: 'numeric', month: '2-digit', day: '2-digit' };
-const fechaFormateada1 = hoy.toLocaleDateString('sv-SE', opciones);
+let fechaFormateada1 = hoy.toLocaleDateString('sv-SE', opciones);
 document.getElementById('fechaElegida1').max = fechaFormateada1;
-const fechaFormateada2 = hoy.toLocaleDateString('sv-SE', opciones);
+let fechaFormateada2 = hoy.toLocaleDateString('sv-SE', opciones);
 document.getElementById('fechaElegida2').max = fechaFormateada2;
 
 async function esperarDatos() {
@@ -78,8 +96,8 @@ async function esperarDatos() {
         const data = await response.json();
         console.log(url_prometida); // prueba técnica para ver si trae bien la url
 
-        const fechaElegida1 = new Date(document.querySelector('#fechaElegida1').value);
-        const fechaElegida2 = new Date(document.querySelector('#fechaElegida2').value);
+        let fechaElegida1 = new Date(document.querySelector('#fechaElegida1').value);
+        let fechaElegida2 = new Date(document.querySelector('#fechaElegida2').value);
 
         // Obtener las fechas del data
         const fechasData = data.map(item => new Date(item.fecha));
@@ -116,7 +134,7 @@ function agregarHistorico(casa, fecha, compra, venta) {
 
     document.querySelector('.tituloCanva').innerHTML= casa[0].toUpperCase();
 
-    new Chart(canvaHistorico, {
+    myChart = new Chart(canvaHistorico, {
         type: 'line',
         data: {
             labels: fecha, 
