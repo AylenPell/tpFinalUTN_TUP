@@ -5,16 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sr. Cambio | Contacto</title>
     <link rel="stylesheet" href="../css/stylesIndex.css" />
-    <script type="text/javascript"
-    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
-    </script>
-    <script type="text/javascript">
-        (function(){
-            emailjs.init({
-                publicKey: "ceqgeO6X6IYONKkDy",
-            });
-        })();
-    </script>
 </head>
 <body>
     <form action="http://127.0.0.1:5000/procesar" method="POST" class="form_mail">
@@ -23,10 +13,19 @@
         <label for="correo">E-mail: </label>
         <input type="email" name="correo" class="inp_mail" id="correo" placeholder="¿A qué mail te enviamos la info?" required>
         <span class="divBotonesForm">
-            <button type="submit" name="enviar" value="Enviar" onclick="enviarInfo()">Enviar info</button>
+            <button type="submit" name="enviar" value="Enviar">Enviar info</button>
             <button type="reset" name="borrar" value="Borrar">Borrar</button>
         </span>
     </form>
+    
+    <!-- script emailjs -->
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+        emailjs.init('ceqgeO6X6IYONKkDy')
+    </script>
+    <!-- script Sr Cambio -->
     <script src="../js/index.js"></script>
 </body>
 </html>

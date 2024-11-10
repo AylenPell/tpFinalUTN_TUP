@@ -76,13 +76,12 @@ def get_info_historico():
     else:
         return jsonify({'error': 'Tu vieja'}), response.status_code
     
-    # Ruta para procesar los datos del formulario
+# envio mail
 @app.route('/procesar', methods=['POST'])
 def procesar():
-    # Obtén los valores del formulario usando request.form
     nombre = request.form.get('nombre')
     correo = request.form.get('correo')
-    # Verifica si los datos fueron recibidos correctamente
+    
     if nombre and correo:
         print(f"Nombre: {nombre}")
         print(f"Correo: {correo}")
@@ -92,9 +91,10 @@ def procesar():
             'user_id': 'ceqgeO6X6IYONKkDy',
             'accessToken': 'CD-KRNfbyAP1_CaGEoUzQ',
             'template_params': {
-                'from_name': "Sr Cambio",
-                'to_name': nombre,
-                'message': 'Este es el mensaje'
+                'user_email': correo,
+                'from_name': 'Sr Cambio',
+                'user_name': nombre,
+                'message': 'Te envio las cotizaciones'
             }
         }
         headers = {
@@ -113,15 +113,19 @@ def procesar():
                 headers=headers
             )
             response.raise_for_status()
-            print('Your mail is sent!')
+            print('La cotización fue enviada correctamente!')
         except requests.exceptions.RequestException as error:
             print(f'Oops... {error}')
             if error.response is not None:
                 print(error.response.text)
     
-        return jsonify({'mensaje': f"Datos recibidos correctamente: {nombre}, {correo}, {data}"}), nombre, correo
+        return jsonify({
+            'mensaje': f"Datos recibidos correctamente",
+            'nombre': nombre,
+            'correo': correo
+        }), 200     
     else:
-        return jsonify({'error': "Faltan datos"}), 405
+        return jsonify({'error': "Amigue, completá bien los datos"}), 405
     
 
 

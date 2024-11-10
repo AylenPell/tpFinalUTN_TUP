@@ -53,7 +53,7 @@ function botonesIndex() {
 })();
 
 async function enviarConEmailJS(nombre, correo) {
-    const templateParams = {
+    let templateParams = {
         user_name: nombre,
         user_email: correo
     };
@@ -68,26 +68,30 @@ async function enviarConEmailJS(nombre, correo) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('formMail');
+    const form = document.querySelector('.form_mail');
     form.addEventListener('submit', async function(event) {
-        event.preventDefault(); // Evita que el formulario se envíe por defecto
+        event.preventDefault(); // Evita el envío por defecto
 
         const formData = new FormData(form);
-        
-        // Enviar datos al servidor Flask
-        const response = await fetch('http://127.0.0.1:5000/procesar', {
-            method: 'POST',
-            body: formData
-        });
 
-        if (response.ok) {
-            const data = await response.json();
-            if (data.nombre && data.correo) {
-                // Enviar correo usando EmailJS
-                enviarConEmailJS(data.nombre, data.correo);
+        try {
+            const response = await fetch('http://127.0.0.1:5000/procesar', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                if (data.nombre && data.correo) {
+                    await enviarConEmailJS(data.nombre, data.correo);
+                }
+                alert(data.mensaje);
+            } else {
+                alert("Error al procesar los datos en el servidor");
             }
-        } else {
-            alert("Error al procesar los datos");
+        } catch (error) {
+            console.error('Error al enviar datos:', error);
         }
     });
 });
+
