@@ -133,6 +133,21 @@ iframe {
 .sobre {
   height: 1.2rem;
 }
+.form_mail{
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+.form_mail label{
+  align-items:start;
+}
+.inp_mail{
+  width: 50%;
+  margin-bottom: 0.5rem;
+  margin-top: 0.1rem;
+}
 
 /*GRAFICOS HISTORICOS*/
 .divCanvas {

@@ -45,3 +45,49 @@ function botonesIndex() {
 //     ruta = botoncito.getAttribute('name');
 //     return ruta
 // }
+
+
+// MAILING
+(function(){
+    emailjs.init("ceqgeO6X6IYONKkDy"); // Inicializa EmailJS
+})();
+
+async function enviarConEmailJS(nombre, correo) {
+    const templateParams = {
+        user_name: nombre,
+        user_email: correo
+    };
+
+    try {
+        const response = await emailjs.send("Sr_Cambio", "cotizaciones", templateParams);
+        alert("¡Correo enviado exitosamente!");
+        console.log('SUCCESS!', response.status, response.text);
+    } catch (error) {
+        console.error('Error al enviar correo:', error);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('formMail');
+    form.addEventListener('submit', async function(event) {
+        event.preventDefault(); // Evita que el formulario se envíe por defecto
+
+        const formData = new FormData(form);
+        
+        // Enviar datos al servidor Flask
+        const response = await fetch('http://127.0.0.1:5000/procesar', {
+            method: 'POST',
+            body: formData
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            if (data.nombre && data.correo) {
+                // Enviar correo usando EmailJS
+                enviarConEmailJS(data.nombre, data.correo);
+            }
+        } else {
+            alert("Error al procesar los datos");
+        }
+    });
+});
