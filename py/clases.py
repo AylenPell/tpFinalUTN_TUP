@@ -1,29 +1,38 @@
-from abc import ABC, abstractmethod
+from abc import ABC
 
 class Moneda(ABC):
-    @abstractmethod
-    def __init__(self, nombre):
-        self.cargar_nombre(nombre)
-    @abstractmethod
-    def cargar_nombre(self, nombre):
-        self.nombre = nombre
-    @abstractmethod    
-    def mostrar_nombre(self):
-        return self.nombre
+    def __init__(self, moneda):
+        self.cargar_moneda(moneda)
+    def cargar_moneda(self, moneda):
+        self.moneda = moneda
+    def mostrar_moneda(self):
+        return self.moneda
 
 class Tipo(Moneda):
-    def __init__(self, nombre_moneda, tipo):
-        Moneda.__init__(self, nombre_moneda)
-        self.cargar_nombre(tipo)
-        self.cotizaciones = []
-    def cargar_nombre(self, tipo):
-        self.nombre = tipo
+    def __init__(self, nombre_moneda, nombre, compra, venta, fecha):
+        super().__init__(nombre_moneda)
+        self.cargar_nombre(nombre)
+        self.cargar_compra(compra)
+        self.cargar_venta(venta)
+        self.cargar_fecha(fecha)
+    def cargar_nombre(self, nombre):
+        self.nombre = nombre
     def mostrar_nombre(self):
         return self.nombre
-    def __str__(self):
-        return f'La moneda es {super().mostrar_nombre()}, tipo {self.mostrar_nombre()}. La cotizacion es: compra {self.cotizaciones[0].valor_compra}, venta {self.cotizaciones[0].valor_venta}, actualizacion {self.cotizaciones[0].actualizacion}'
-    def cargar_cotizacion(self, cotizacion):
-        self.cotizaciones.append(cotizacion)
+    def cargar_compra(self, compra):
+        self.compra = compra
+    def mostrar_compra(self):
+        return self.compra
+    def cargar_venta(self, venta):
+        self.venta = venta
+    def mostrar_venta(self):
+        return self.venta
+    def cargar_fecha(self, fecha):
+        self.fecha = fecha
+    def mostrar_fecha(self):
+        return self.fecha
+    def str(self):
+        return f"{self.mostrar_moneda()}, {self.mostrar_nombre()}, {self.mostrar_compra()}, {self.mostrar_venta()}, {self.mostrar_fecha()}"
     
 class Cotizacion():
     def __init__(self, actualizacion, valor_compra, valor_venta):
@@ -44,22 +53,3 @@ class Cotizacion():
         return self.valor_compra
     def __str__(self):
         return f'La cotizacion es: compra {self.valor_compra}, venta {self.valor_venta}, actualizacion {self.actualizacion}'
-
-# PRUEBAS en clase
-# moneda1 = Tipo("oficial", "dolar")
-# moneda2 = Tipo("oficial", "euro")
-# moneda3 = Tipo("", "")
-# moneda3.cargar_tipo("blue")
-# moneda3.cargar_nombre("dolar")
-
-cotizacion1 = Cotizacion("hoy", 900, 800)
-cotizacion2 = Cotizacion("ayer", 700, 600)
-# moneda1.cargar_cotizacion(cotizacion1)
-# moneda2.cargar_cotizacion(cotizacion2)
-
-# print(moneda1)
-# print(moneda2)
-
-dolar = Tipo("dolar", "oficial")
-dolar.cargar_cotizacion(cotizacion1)
-print(dolar)

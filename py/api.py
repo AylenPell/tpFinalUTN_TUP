@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request, json
 import requests
+from clases import Tipo
 from flask_cors import CORS # para que no lo tome como malicioso
 
 app = Flask(__name__) # crea servidor
@@ -19,19 +20,41 @@ def get_info_cotizaciones():
         data = response.json()
         info_moneda = []
         
-        for i in data:
-            info_moneda.append({
-                'casa': i['casa'],
-                'compra': i['compra'],
-                'venta': i['venta'],
-                'nombre': i['nombre'],
-                'moneda': i['moneda'],
-                'fechaActualizacion': i['fechaActualizacion']
-                
-            })
-        return jsonify(info_moneda)
+        for item in data:
+                monedas = Tipo(
+                    nombre_moneda=item.get('moneda'),
+                    nombre=item.get('nombre'),
+                    compra=item.get('compra'),
+                    venta=item.get('venta'),
+                    fecha=item.get('fechaActualizacion')
+                )
+                info_moneda.append({
+                    'moneda': monedas.mostrar_moneda(),
+                    'nombre': monedas.mostrar_nombre(),
+                    'compra': monedas.mostrar_compra(),
+                    'venta': monedas.mostrar_venta(),
+                    'fecha': monedas.mostrar_fecha()
+                })
+        return jsonify(info_moneda), 200
     else:
-        return jsonify({'error': 'Tu vieja'}), response.status_code
+            return jsonify({'error': 'No se pudieron obtener las cotizaciones'}), 500
+        
+    #     for i in data:
+    #         dolar = Tipo(
+                
+    #         )
+    #         info_moneda.append({
+    #             'casa': i['casa'],
+    #             'compra': i['compra'],
+    #             'venta': i['venta'],
+    #             'nombre': i['nombre'],
+    #             'moneda': i['moneda'],
+    #             'fechaActualizacion': i['fechaActualizacion']
+                
+    #         })
+    #     return jsonify(info_moneda)
+    # else:
+    #     return jsonify({'error': 'Tu vieja'}), response.status_code
 
 @app.route('/dolares', methods=['GET'])
 def get_info_dolares(): 
@@ -94,7 +117,7 @@ def procesar():
                 'user_email': correo,
                 'from_name': 'Sr Cambio',
                 'user_name': nombre,
-                'message': 'Te envio las cotizaciones'
+                'message': 'te las debo, para la proxima será'
             }
         }
         headers = {
@@ -127,10 +150,6 @@ def procesar():
     else:
         return jsonify({'error': "Amigue, completá bien los datos"}), 405
     
-
-
-
-
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5000)
 

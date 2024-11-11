@@ -133,6 +133,11 @@ iframe {
 .sobre {
   height: 1.2rem;
 }
+.sobre:hover{
+  cursor: pointer;
+  transform: scale(1.9);
+  box-shadow:  0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff,0 0 40px #fff, 0 0 50px #fff;
+}
 .form_mail{
   display: flex;
   flex-direction: column;
@@ -207,10 +212,19 @@ iframe {
 }
 
 /* RESPONSIVE */
-@media (min-width: 1024px) {
+@media (min-width: 683px) {
   .imgMon {
     margin: auto;
     width: 75%;
+  }
+  .bodyCards{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 2rem;    
+  }
+  .card{
+    margin: 0;
   }
 
   /* historico */
