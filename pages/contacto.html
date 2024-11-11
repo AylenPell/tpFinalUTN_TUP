@@ -14,17 +14,18 @@
   <script type="text/javascript">
       emailjs.init('ceqgeO6X6IYONKkDy')
   </script>
-    <form action="http://127.0.0.1:5000/procesar" method="POST" class="form_mail">
+    <form action="#"  class="form_mail">
         <label for="nombre">Nombre: </label>
         <input type="text" name="nombre" class="inp_mail" id="nombre" placeholder="¿Cómo te llamás?" required>
         <label for="correo">E-mail: </label>
         <input type="email" name="correo" class="inp_mail" id="correo" placeholder="¿A qué mail te enviamos la info?" required>
         <span class="divBotonesForm">
-            <button type="submit" name="enviar" value="Enviar">Enviar info</button>
+            <button type="submit" name="enviar" value="Enviar"  onclick="enviarEmail()">Enviar info</button>
             <button type="reset" name="borrar" value="Borrar">Borrar</button>
         </span>
     </form>    
     <!-- script Sr Cambio -->
-    <script src="../js/index.js"></script>
+    <script src="../js/index.js"></script>      
+    <script src="../js/mail.js"></script>   
 </body>
 </html>

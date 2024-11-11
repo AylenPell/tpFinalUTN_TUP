@@ -4,15 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sr. Cambio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Sora:wght@100..800&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="img/favi.png" type="image/x-icon" />
+    
+    
 </head>
 <body style=
-"background-color: #b2d36b;"
-
+"background-color: #b2d36b; margin: 2rem; font-family: sora, sans-serif;" 
 >
-    <div class="logoH1">
-        <img src="../img/sr.png" alt="Caricatura Señor Cambio" class="iso_sr" />
-        <h1>Sr Cambio</h1>
+    <div class="logoH1" style="display: flex;align-items: flex-end;">
+        <h1 style="font-size: 1rem">Sr Cambio</h1>
     </div>
+    <div class="mandar_cotizacion_mail">
+        <div class="container_gral">
+            <h2>Cotizaciones del día</h2>
+            <div class="moneda">
+                <ul>
+                    <p class="nombre"></p>
+                    <li class="compra"></li>
+                    <li class="venta"></li>
+                    <li class="fecha"></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container_dolares">
+            <h2>Tipos de dólar</h2>
+            <div class="moneda">
+                <ul>
+                    <p class="nombre"></p>
+                    <li class="compra"></li>
+                    <li class="venta"></li>
+                    <li class="fecha"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+  
+ <script src="../js/mail.js"></script>   
+ <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3.2.0/dist/email.min.js"></script>
+ <script src="https://cdn.emailjs.com/sdk/3.2/email.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        emailjs.init("ceqgeO6X6IYONKkDy");
+    });
+</script>
+
 </body>
 </html>
