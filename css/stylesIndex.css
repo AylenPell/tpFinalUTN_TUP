@@ -157,16 +157,16 @@ iframe {
   margin-bottom: 0.5rem;
   margin-top: 0.1rem;
 }
-.form_mail button{
+.btnStyle{
   margin-left: 0.2rem;
   margin-right: 0.2rem;
-  padding: 5px;
+  padding: 5px 8px;
   border: 0;
   border-radius: 2%;
   background-color: black;
   color: #fff;
 }
-.form_mail button:hover{
+.btnStyle:hover{
   color:#b2d36b;
 }
 
