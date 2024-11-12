@@ -139,8 +139,8 @@ iframe {
 }
 .sobre:hover{
   cursor: pointer;
-  transform: scale(1.9);
-  box-shadow:  0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff,0 0 40px #fff, 0 0 50px #fff;
+  transform: scale(1.5);
+  box-shadow:  0 0 10px #ffffff89, 0 0 10px #ffffff89, 0 0 20px #ffffff89,0 0 30px #ffffff89, 0 0 40px #ffffff89;
 }
 .form_mail{
   display: flex;
@@ -156,6 +156,18 @@ iframe {
   width: 50%;
   margin-bottom: 0.5rem;
   margin-top: 0.1rem;
+}
+.form_mail button{
+  margin-left: 0.2rem;
+  margin-right: 0.2rem;
+  padding: 5px;
+  border: 0;
+  border-radius: 2%;
+  background-color: black;
+  color: #fff;
+}
+.form_mail button:hover{
+  color:#b2d36b;
 }
 
 /*GRAFICOS HISTORICOS*/
@@ -187,6 +199,7 @@ iframe {
 }
 .tituloCanva {
   margin-top: 1rem;
+  text-align: center;
 }
 .historicoContenedor {
   height: 100vh;
