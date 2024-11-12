@@ -52,46 +52,46 @@ function botonesIndex() {
     emailjs.init("ceqgeO6X6IYONKkDy"); // Inicializa EmailJS
 })();
 
-async function enviarConEmailJS(nombre, correo) {
-    let templateParams = {
-        user_name: nombre,
-        user_email: correo
-    };
+// async function enviarConEmailJS(nombre, correo) {
+//     let templateParams = {
+//         user_name: nombre,
+//         user_email: correo
+//     };
 
-    try {
-        const response = await emailjs.send("Sr_Cambio", "cotizaciones", templateParams);
-        alert("¡Correo enviado exitosamente!");
-        console.log('SUCCESS!', response.status, response.text);
-    } catch (error) {
-        console.error('Error al enviar correo:', error);
-    }
-}
+//     try {
+//         const response = await emailjs.send("Sr_Cambio", "cotizaciones", templateParams);
+//         alert("¡Correo enviado exitosamente!");
+//         console.log('SUCCESS!', response.status, response.text);
+//     } catch (error) {
+//         console.error('Error al enviar correo:', error);
+//     }
+// }
 
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.querySelector('.form_mail');
-    form.addEventListener('submit', async function(event) {
-        event.preventDefault(); // Evita el envío por defecto
+// document.addEventListener('DOMContentLoaded', function() {
+//     const form = document.querySelector('.form_mail');
+//     form.addEventListener('submit', async function(event) {
+//         event.preventDefault(); // Evita el envío por defecto
 
-        const formData = new FormData(form);
+//         const formData = new FormData(form);
 
-        try {
-            const response = await fetch('http://127.0.0.1:5000/procesar', {
-                method: 'POST',
-                body: formData
-            });
+//         try {
+//             const response = await fetch('http://127.0.0.1:5000/procesar', {
+//                 method: 'POST',
+//                 body: formData
+//             });
 
-            if (response.ok) {
-                const data = await response.json();
-                if (data.nombre && data.correo) {
-                    await enviarConEmailJS(data.nombre, data.correo);
-                }
-                alert(data.mensaje);
-            } else {
-                alert("Error al procesar los datos en el servidor");
-            }
-        } catch (error) {
-            console.error('Error al enviar datos:', error);
-        }
-    });
-});
+//             if (response.ok) {
+//                 const data = await response.json();
+//                 if (data.nombre && data.correo) {
+//                     await enviarConEmailJS(data.nombre, data.correo);
+//                 }
+//                 alert(data.mensaje);
+//             } else {
+//                 alert("Error al procesar los datos en el servidor");
+//             }
+//         } catch (error) {
+//             console.error('Error al enviar datos:', error);
+//         }
+//     });
+// });
 
