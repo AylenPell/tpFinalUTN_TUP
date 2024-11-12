@@ -9,48 +9,21 @@
 <body style=
 "background-color: #b2d36b; margin: 2rem; font-family: sora, sans-serif;" 
 >
-    <script src="../js/mail.js"></script> 
-      <!-- script emailjs -->
-      <script type="text/javascript"
-      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
-  </script>
-  <script type="text/javascript">
-      emailjs.init('ceqgeO6X6IYONKkDy')
-  </script>
-      <div class="logoH1" style="display: flex;align-items: flex-end;">
-          <h1 style="font-size: 1rem">Sr Cambio</h1>
-      </div>
-      <div class="mandar_cotizacion_mail">
-          <div class="container_gral">
-              <h2>Cotizaciones del día</h2>
-              <div class="moneda">
-                  <ul>
-                      <p class="nombre"></p>
-                      <li class="compra"></li>
-                      <li class="venta"></li>
-                      <li class="fecha"></li>
-                  </ul>
-              </div>
-          </div>
-          <div class="container_dolares">
-              <h2>Tipos de dólar</h2>
-              <div class="moneda">
-                  <ul>
-                      <p class="nombre"></p>
-                      <li class="compra"></li>
-                      <li class="venta"></li>
-                      <li class="fecha"></li>
-                  </ul>
-              </div>
-          </div>
-      </div>
-    <form action="#"  class="form_mail">
+    <script src="../js/probando.js"></script> 
+        <!-- script emailjs -->
+    <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+        emailjs.init('ceqgeO6X6IYONKkDy')
+    </script>
+    <form action="http://127.0.0.1:5000/procesar" method="post" class="form_mail">
         <label for="nombre">Nombre: </label>
         <input type="text" name="nombre" class="inp_mail" id="nombre" placeholder="¿Cómo te llamás?" required>
         <label for="correo">E-mail: </label>
         <input type="email" name="correo" class="inp_mail" id="correo" placeholder="¿A qué mail te enviamos la info?" required>
         <span class="divBotonesForm">
-            <button type="submit" name="enviar" value="Enviar"  id="enviarEmail">Enviar info</button>
+            <button type="submit" name="enviar" value="Enviar"  id="bntEnviarEmail">Enviar info</button>
             <button type="reset" name="borrar" value="Borrar">Borrar</button>
         </span>
     </form>  
