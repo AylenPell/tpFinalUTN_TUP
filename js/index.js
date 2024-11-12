@@ -4,6 +4,13 @@ const navUl = document.querySelector('.navUl');
     
 menuHamburguesa.addEventListener('click', () => {
     navUl.classList.toggle('open');
+    if (navUl.classList.contains('open')) {
+        const contenedorIframes = document.querySelector('.contenedorIframes');
+        contenedorIframes.classList.add('margen_nav');
+    } else {
+        const contenedorIframes = document.querySelector('.contenedorIframes');
+        contenedorIframes.classList.remove('margen_nav');
+    }
 });
 
 function mostrarIframe(id) {
@@ -38,13 +45,5 @@ function botonesIndex() {
         console.log("funciona dolares"); // prueba técnica para ver si funciona
     }
 }
-
-// para cuando sepamos usar Node.js
-// export function nombrar_ruta(){
-//     botoncito = document.getElementById('navHome')
-//     ruta = botoncito.getAttribute('name');
-//     return ruta
-// }
-
 
 

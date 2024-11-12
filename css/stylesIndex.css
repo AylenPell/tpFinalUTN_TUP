@@ -18,6 +18,10 @@ nav {
   top: 0px;
 }
 
+.margen_nav{
+  margin-top: 2.5rem;
+}
+
 /* ENCABEZADO */
 h2 {
   text-align: center;
@@ -32,7 +36,7 @@ section {
 .ocultar {
   display: none;
 }
-.contenedorCards {
+.contenedorIframes {
   width: 100vw;
   height: 100vh;
 }
@@ -211,6 +215,7 @@ iframe {
   margin-top: 1rem;
 }
 
+
 /* RESPONSIVE */
 @media (min-width: 683px) {
   .imgMon {
@@ -226,7 +231,6 @@ iframe {
   .card{
     margin: 0;
   }
-
   /* historico */
   #grafico {
     width: 80%;

@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request, json
 import requests
 from clases import Tipo
+from datetime import datetime
 from flask_cors import CORS # para que no lo tome como malicioso
 
 app = Flask(__name__) # crea servidor
@@ -48,18 +49,24 @@ def get_info_dolares():
         data = response.json()
         info_moneda = []
         
-        for i in data:
-            info_moneda.append({
-                'casa': i['casa'],
-                'compra': i['compra'],
-                'venta': i['venta'],
-                'nombre': i['nombre'],
-                'moneda': i['moneda'],
-                'fechaActualizacion': i['fechaActualizacion']                
-            })        
-        return info_moneda
+        for item in data:
+                monedas = Tipo(
+                    nombre_moneda=item.get('moneda'),
+                    nombre=item.get('nombre'),
+                    compra=item.get('compra'),
+                    venta=item.get('venta'),
+                    fecha=item.get('fechaActualizacion')
+                )
+                info_moneda.append({
+                    'moneda': monedas.mostrar_moneda(),
+                    'nombre': monedas.mostrar_nombre(),
+                    'compra': monedas.mostrar_compra(),
+                    'venta': monedas.mostrar_venta(),
+                    'fecha': monedas.mostrar_fecha()
+                })
+        return jsonify(info_moneda), 200
     else:
-        return jsonify({'error': 'Tu vieja'}), response.status_code
+            return jsonify({'error': 'No se pudieron obtener las cotizaciones'}), 500
     
 @app.route('/print_dolares', methods=['GET'])
 def print_info_dolares(): 
@@ -71,21 +78,26 @@ def print_info_dolares():
         info_moneda = []
         
         for i in data:
+            fecha_actualizacion = i.get('fechaActualizacion')
+            if fecha_actualizacion:
+                fecha_dt = datetime.strptime(fecha_actualizacion, "%Y-%m-%dT%H:%M:%S.%fZ")
+                fecha_formateada = fecha_dt.strftime('%d-%m-%Y %H:%M') # formato fecha
+            else:
+                fecha_formateada = "Fecha no disponible"
             info_moneda.append({
                 'casa': i['casa'],
                 'compra': i['compra'],
                 'venta': i['venta'],
                 'nombre': i['nombre'],
                 'moneda': i['moneda'],
-                'fechaActualizacion': i['fechaActualizacion']                
+                'fechaActualizacion': fecha_formateada               
             })
-        email_body = "Cotización Dólares:\n\n"
+        email_body = "DÓLAR\n\n"
         for item in info_moneda:
-            email_body += f"Casa: {item['casa']}\n"
+            email_body += f"{item['moneda']}\n"
+            email_body += f"{item['nombre']}\n"
             email_body += f"Compra: {item['compra']}\n"
             email_body += f"Venta: {item['venta']}\n"
-            email_body += f"Nombre: {item['nombre']}\n"
-            email_body += f"Moneda: {item['moneda']}\n"
             email_body += f"Fecha de Actualización: {item['fechaActualizacion']}\n"
             email_body += "-" * 30 + "\n"  # Separador entre cada casa de cambio
         
@@ -103,21 +115,26 @@ def print_info_general():
         info_moneda = []
         
         for i in data:
+            fecha_actualizacion = i.get('fechaActualizacion')
+            if fecha_actualizacion:
+                fecha_dt = datetime.strptime(fecha_actualizacion, "%Y-%m-%dT%H:%M:%S.%fZ")
+                fecha_formateada = fecha_dt.strftime('%d-%m-%Y %H:%M')
+            else:
+                fecha_formateada = "Fecha no disponible"
             info_moneda.append({
                 'casa': i['casa'],
                 'compra': i['compra'],
                 'venta': i['venta'],
                 'nombre': i['nombre'],
                 'moneda': i['moneda'],
-                'fechaActualizacion': i['fechaActualizacion']                
+                'fechaActualizacion': fecha_formateada              
             })
-        email_body = "Cotizaciones generales:\n\n"
+        email_body = "OTRAS MONEDAS\n\n"
         for item in info_moneda:
-            email_body += f"Casa: {item['casa']}\n"
+            email_body += f"{item['moneda']}\n"
+            email_body += f"{item['nombre']}\n"
             email_body += f"Compra: {item['compra']}\n"
             email_body += f"Venta: {item['venta']}\n"
-            email_body += f"Nombre: {item['nombre']}\n"
-            email_body += f"Moneda: {item['moneda']}\n"
             email_body += f"Fecha de Actualización: {item['fechaActualizacion']}\n"
             email_body += "-" * 30 + "\n"  # Separador entre cada casa de cambio
         
@@ -150,7 +167,6 @@ def get_info_historico():
         return jsonify({'error': 'Tu vieja'}), response.status_code
 
 # envio mail
-
 
 @app.route('/procesar', methods=['POST'])
 def procesar():
@@ -194,7 +210,7 @@ def procesar():
             if error.response is not None:
                 print(error.response.text)
     
-        return f'Mensaje envidado correctamente a {correo}', 200     
+        return f'Mensaje enviado correctamente a {correo}', 200     
     else:
         return jsonify({'error': "Amigue, completá bien los datos"}), 405
     
