@@ -1,6 +1,3 @@
-//import {nombrar_ruta} from "./index.js"
-// para cuando sepamos usar Node.js
-
 // Llamada api de Python
 fetch(`http://127.0.0.1:5000/dolares`)
 .then(response => response.json())

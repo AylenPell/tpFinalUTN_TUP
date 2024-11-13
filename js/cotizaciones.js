@@ -3,13 +3,13 @@ fetch('http://127.0.0.1:5000/cotizaciones')
 .then(response => response.json())
 .then(info_moneda => {for (i=0; i<info_moneda.length; i++){
     agregarCotizacion(
-      info_moneda[i].nombre, 
-      info_moneda[i].compra.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 }), 
-      info_moneda[i].venta.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 }), 
-      info_moneda[i].fecha)
-    document.getElementsByClassName("card")[i+1].style.display="grid"
-    console.log(info_moneda)
-  }}); 
+    info_moneda[i].nombre, 
+    info_moneda[i].compra.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 }), 
+    info_moneda[i].venta.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 }), 
+    info_moneda[i].fecha)
+document.getElementsByClassName("card")[i+1].style.display="grid"
+console.log(info_moneda)
+}}); 
 
 //cards
 function agregarCotizacion(nombre, compra, venta, fecha){
