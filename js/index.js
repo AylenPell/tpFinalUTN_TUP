@@ -24,28 +24,6 @@ function mostrarIframe(id) {
     iframeSeleccionado.classList.remove('ocultar');
     }
 
-function botonesIndex() { 
-    const iframeUno = document.getElementById('cotizaciones');
-    const iframeDos = document.getElementById('dolares');
-    const btnUno = document.getElementById('botonDolar');
-    const btnDos = document.getElementById('botonCotizaciones');
-
-    if (iframeUno) {
-        iframeUno.classList.toggle('ocultar');
-        if(btnUno){
-            btnDos.classList.toggle('ocultar');
-        }
-        console.log("funciona cotizacion"); // prueba técnica para ver si funciona
-    }
-    if (iframeDos) {
-        iframeDos.classList.toggle('ocultar');
-        if(btnDos){
-            btnUno.classList.toggle('ocultar');
-        }
-        console.log("funciona dolares"); // prueba técnica para ver si funciona
-    }
-}
-
 
 const btnSobre = document.querySelector('.sobre');
 btnSobre.addEventListener('mouseover', msjSobre);
