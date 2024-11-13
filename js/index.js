@@ -47,3 +47,11 @@ function botonesIndex() {
 }
 
 
+const btnSobre = document.querySelector('.sobre');
+btnSobre.addEventListener('mouseover', msjSobre);
+btnSobre.addEventListener('mouseout', msjSobre);
+function msjSobre(){
+    const btnMsj = document.querySelector('.msjSobre');
+    btnMsj.classList.toggle('ocultar');
+}
+

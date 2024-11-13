@@ -125,8 +125,9 @@ iframe {
 .divSobre {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 2.8rem;
+  justify-content: flex-start;
+  margin-left: 1.5rem;
+  width: auto;
   height: 2.4rem;
   border-radius: 50%;
   border: 2px rgba(0, 0, 0, 0) solid;
@@ -168,6 +169,17 @@ iframe {
 }
 .btnStyle:hover{
   color:#b2d36b;
+}
+.msjSobre{
+  z-index: 10000;
+  margin-left: 1rem;
+  background-color: #000000;
+  color: #fff;
+  border-radius: 5px;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.7rem;
+  height: fit-content;
+  width: fit-content;
 }
 
 /*GRAFICOS HISTORICOS*/
