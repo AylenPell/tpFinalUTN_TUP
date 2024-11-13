@@ -129,7 +129,7 @@ def print_info_general():
                 'moneda': i['moneda'],
                 'fechaActualizacion': fecha_formateada              
             })
-        email_body = "OTRAS MONEDAS\n\n"
+        email_body = "\n\nOTRAS MONEDAS\n\n"
         for item in info_moneda:
             email_body += f"{item['moneda']}\n"
             email_body += f"{item['nombre']}\n"

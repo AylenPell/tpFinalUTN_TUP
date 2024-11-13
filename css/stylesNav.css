@@ -33,15 +33,22 @@
   height: 2rem;
   cursor: pointer;
 }
-.linkNav {
-  color: rgb(40, 40, 40);
-  border-bottom: 0.1rem solid transparent;
-  transition: border-color 0.4s ease;
+
+.opcionMenu {
+  color: #000000;
+  font-weight: 300;
 }
-.linkNav:hover {
+.opcionMenu:hover {
   cursor: pointer;
-  border-color: rgb(40, 40, 40);
+  color: #fff;
 }
+
+.activar{
+  color: #fff;
+  text-decoration: underline;
+}
+
+
 @media screen and (max-width: 768px) {
   .navUl {
     background-color: black;
@@ -62,5 +69,19 @@
   }
   .menuHamburguesa {
     display: flex;
+  }
+
+  .opcionMenu {
+    color: #fff;
+    font-weight: 300;
+  }
+  .opcionMenu:hover {
+    cursor: pointer;
+    color: #b2d36b;
+  }
+
+  .activar{
+    color: #b2d36b;
+    text-decoration: underline;
   }
 }

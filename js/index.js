@@ -55,3 +55,15 @@ function msjSobre(){
     btnMsj.classList.toggle('ocultar');
 }
 
+function pintarOpcionMenu(iframeId, opcionAct, opcionInact1, opcionInact2){
+    let iframeActivo = document.querySelector(`#${iframeId}`);
+    let opcionMenuActiva = document.querySelector(`#${opcionAct}`);
+    let opcionMenuInactiva1 = document.querySelector(`#${opcionInact1}`);
+    let opcionMenuInactiva2 = document.querySelector(`#${opcionInact2}`);
+    if (!iframeActivo.classList.contains('ocultar')){
+        opcionMenuActiva.classList.add('activar');
+        opcionMenuInactiva1.classList.remove('activar');
+        opcionMenuInactiva2.classList.remove('activar');
+    }
+}
+

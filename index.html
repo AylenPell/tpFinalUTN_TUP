@@ -23,13 +23,13 @@
         />
         <ul class="navUl">
           <li id="home" class="linkNav">
-            <p class="opcionMenu" id="navHome" name="cotizaciones" onclick="mostrarIframe('cotizaciones')"> Home </p>
+            <p class="opcionMenu" id="navHome" name="cotizaciones" onclick="mostrarIframe('cotizaciones'), pintarOpcionMenu('cotizaciones', 'navHome', 'navDolar', 'navHistorico')"> Home </p>
           </li>
           <li id="dolar" class="linkNav">
-            <p class="opcionMenu" id="navDolar" name="dolares" onclick="mostrarIframe('dolares')"> Dólar </p>
+            <p class="opcionMenu" id="navDolar" name="dolares" onclick="mostrarIframe('dolares'), pintarOpcionMenu('dolares', 'navDolar', 'navHome', 'navHistorico')"> Dólar </p>
           </li>
           <li class="linkNav">
-            <p class="opcionMenu" id="navHistorico" onclick="mostrarIframe('historico')"> Histórico </p>
+            <p class="opcionMenu" id="navHistorico" onclick="mostrarIframe('historico'), pintarOpcionMenu('historico', 'navHistorico', 'navDolar', 'navHome')"> Histórico </p>
           </li>
         </ul>
       </div>
