@@ -7,11 +7,7 @@ from flask_cors import CORS # para que no lo tome como malicioso
 app = Flask(__name__) # crea servidor
 CORS(app) # es buenito
 
-# para cuando aprendamos a usar node.js
-# def getURL_cotizaciones(ruta):
-#  url = f"https://dolarapi.com/v1/{ruta}"
-#  return url
-
+# trae las cotizaciones generales
 @app.route('/cotizaciones', methods=['GET'])
 def get_info_cotizaciones(): 
     url = "https://dolarapi.com/v1/cotizaciones"
@@ -40,6 +36,7 @@ def get_info_cotizaciones():
     else:
             return jsonify({'error': 'No se pudieron obtener las cotizaciones'}), 500
 
+# trae las cotizaciones del dolar
 @app.route('/dolares', methods=['GET'])
 def get_info_dolares(): 
     url = "https://dolarapi.com/v1/dolares"
@@ -67,7 +64,8 @@ def get_info_dolares():
         return jsonify(info_moneda), 200
     else:
             return jsonify({'error': 'No se pudieron obtener las cotizaciones'}), 500
-    
+
+# prepara la info de dolares para mandar por mail    
 @app.route('/print_dolares', methods=['GET'])
 def print_info_dolares(): 
     url = "https://dolarapi.com/v1/dolares"
@@ -84,6 +82,7 @@ def print_info_dolares():
                 fecha_formateada = fecha_dt.strftime('%d-%m-%Y %H:%M') # formato fecha
             else:
                 fecha_formateada = "Fecha no disponible"
+
             info_moneda.append({
                 'casa': i['casa'],
                 'compra': i['compra'],
@@ -103,8 +102,9 @@ def print_info_dolares():
         
         return email_body
     else:
-        return jsonify({'error': 'Tu vieja'}), response.status_code
+        return jsonify({'error': 'No es posible cargar la info'}), response.status_code
 
+# prepara la info de cotizaciones generales para mandar por mail 
 @app.route('/print_generales', methods=['GET'])
 def print_info_general(): 
     url = "https://dolarapi.com/v1/cotizaciones"
@@ -140,34 +140,13 @@ def print_info_general():
         
         return email_body
     else:
-        return jsonify({'error': 'Tu vieja'}), response.status_code
+        return jsonify({'error': 'No es posible cargar la info'}), response.status_code
 
 body_content_dolares = print_info_dolares()
 body_content_general = print_info_general()
-body_content = body_content_dolares + body_content_general
-
-@app.route('/historico', methods=['GET'])
-def get_info_historico(): 
-    url = "https://api.argentinadatos.com/v1/cotizaciones/dolares/"
-    response = requests.get(url)   
-    print(response.json(), "Datos recibidos de la API")  
-    if response.status_code == 200: # OK 
-        data = response.json()
-        info_moneda = []
-        
-        for i in data:
-            info_moneda.append({
-                'casa': i['casa'],
-                'compra': i['compra'],
-                'venta': i['venta'],
-                'fecha': i['fecha']
-            })        
-        return jsonify(info_moneda)
-    else:
-        return jsonify({'error': 'Tu vieja'}), response.status_code
+body_content = body_content_dolares + body_content_general # contenido final para el mail
 
 # envio mail
-
 @app.route('/procesar', methods=['POST'])
 def procesar():
     nombre = request.form.get('nombre')
