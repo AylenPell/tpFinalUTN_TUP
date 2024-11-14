@@ -33,23 +33,4 @@ class Tipo(Moneda):
         return self.fecha
     def str(self):
         return f"{self.mostrar_moneda()}, {self.mostrar_nombre()}, {self.mostrar_compra()}, {self.mostrar_venta()}, {self.mostrar_fecha()}"
-    
-class Cotizacion():
-    def __init__(self, actualizacion, valor_compra, valor_venta):
-        self.cargar_act(actualizacion)
-        self.cargar_venta(valor_venta)
-        self.cargar_compra(valor_compra)
-    def cargar_act(self, actualizacion):
-        self.actualizacion = actualizacion
-    def mostrar_act(self):
-        return self.actualizacion
-    def cargar_venta(self, valor_venta):
-        self.valor_venta = valor_venta
-    def mostrar_venta(self):
-        return self.valor_venta
-    def cargar_compra(self, valor_compra):
-        self.valor_compra = valor_compra
-    def mostrar_compra(self):
-        return self.valor_compra
-    def __str__(self):
-        return f'La cotizacion es: compra {self.valor_compra}, venta {self.valor_venta}, actualizacion {self.actualizacion}'
+
