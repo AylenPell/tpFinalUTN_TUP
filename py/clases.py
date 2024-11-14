@@ -1,6 +1,4 @@
-from abc import ABC
-
-class Moneda(ABC):
+class Moneda():
     def __init__(self, moneda):
         self.cargar_moneda(moneda)
     def cargar_moneda(self, moneda):
